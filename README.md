@@ -13,6 +13,13 @@
      node index.js
      ```
 
+   - Teremos a seguinte saída:
+
+     - ```
+       gitpod /workspace/nodejs-clean-template $ node index.js
+       Hello, world!
+       ```
+
 # Começando um projeto NodeJS pelo VSCode instalado na máquina
 
 1. Crie uma pasta no seu PC, de preferência em uma localização de pastas sem acento e sem espaço, exemplo:
@@ -40,7 +47,7 @@ C:\GitHub\SamsungOcean\ocean-backend-17-08-2021
    
 6. Clique no botão `New file` e digite `index.js`
 
-   - ![image-20210817093440179](C:\Users\paulo\AppData\Roaming\Typora\typora-user-images\image-20210817093440179.png)
+   - ![Criando arquivo](images_readme/criando-arquivo.png)
 
 7. Digite o seguinte código:
 
@@ -56,10 +63,7 @@ C:\GitHub\SamsungOcean\ocean-backend-17-08-2021
 
    - Teremos a seguinte saída:
 
-     - ```bash
+     - ```
        C:\GitHub\SamsungOcean\ocean-backend-17-08-2021>node index.js
        Hello, world!
        ```
-
-       
-
