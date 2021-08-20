@@ -42,4 +42,25 @@ app.post("/personagens", function (req, res) {
     res.send("Item adicionado com sucesso!");
 });
 
+// [PUT] /personagens/:id
+// Update
+app.put("/personagens/:id", function (req, res) {
+    /*
+    Objetivo: Atualizar uma personagem
+    Passos:
+    - Pegar o ID dessa personagem
+    - Pegar a nova informação que eu quero atualizar
+    - Atualizar essa nova informação na lista de personagens
+    - Exibir que deu certo
+    */
+
+    const id = req.params.id - 1;
+
+    const item = req.body.nome;
+
+    lista[id] = item;
+
+    res.send("Personagem atualizada com sucesso!");
+});
+
 app.listen(3000);
