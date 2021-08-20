@@ -34,7 +34,12 @@ app.get("/personagens/:id", function (req, res) {
 
 // [POST] /personagens
 app.post("/personagens", function (req, res) {
-    res.send(req.body);
+    // Obtém o corpo da requisição e coloca na variável item
+    const item = req.body.nome;
+
+    lista.push(item);
+
+    res.send("Item adicionado com sucesso!");
 });
 
 app.listen(3000);
