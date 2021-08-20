@@ -65,4 +65,14 @@ app.put("/personagens/:id", function (req, res) {
     res.send("Personagem atualizada com sucesso!");
 });
 
+// [DELETE] /personagens/:id
+// Delete
+app.delete("/personagens/:id", function (req, res) {
+    const id = req.params.id - 1;
+
+    delete lista[id];
+
+    res.send("Personagem removida com sucesso!");
+});
+
 app.listen(3000);
