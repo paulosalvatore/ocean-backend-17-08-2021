@@ -14,21 +14,33 @@ app.get("/", function (req, res) {
 // "CRUD em memória"
 
 // Lista de textos (strings)
-const lista = ["Rick Sanchez", "Morty Smith"];
-//              0               1
+const lista = [
+    {
+        id: 1,
+        nome: "Rick Sanchez",
+    },
+    {
+        id: 2,
+        nome: "Morty Smith",
+    },
+];
 
 // [GET] /personagens
 // Read All
 app.get("/personagens", function (req, res) {
-    res.send(lista.filter(Boolean));
+    res.send(lista);
 });
+
+function findById(id) {
+    return lista.find(elemento => elemento.id === id);
+}
 
 // [GET] /personagens/:id
 // Read By Id
 app.get("/personagens/:id", function (req, res) {
-    const id = req.params.id - 1;
+    const id = +req.params.id;
 
-    const item = lista[id];
+    const item = findById(id);
 
     if (!item) {
         res.status(404).send("Personagem não encontrado.");
@@ -43,7 +55,7 @@ app.get("/personagens/:id", function (req, res) {
 // Create
 app.post("/personagens", function (req, res) {
     // Obtém o corpo da requisição e coloca na variável item
-    const item = req.body.nome;
+    const item = req.body;
 
     if (!item) {
         res.status(400).send(
@@ -53,9 +65,9 @@ app.post("/personagens", function (req, res) {
         return;
     }
 
-    lista.push(item);
+    item.id = lista.push(item);
 
-    res.status(201).send("Item adicionado com sucesso!");
+    res.status(201).send(item);
 });
 
 // [PUT] /personagens/:id
@@ -70,17 +82,19 @@ app.put("/personagens/:id", function (req, res) {
     - Exibir que deu certo
     */
 
-    const id = req.params.id - 1;
+    const id = +req.params.id;
 
-    if (!lista[id]) {
+    const itemEncontrado = findById(id);
+
+    if (!itemEncontrado) {
         res.status(404).send("Personagem não encontrado.");
 
         return;
     }
 
-    const item = req.body.nome;
+    const novoItem = req.body;
 
-    if (!item) {
+    if (!novoItem || !novoItem.nome) {
         res.status(400).send(
             "Chave 'nome' não foi encontrada no corpo da requisição."
         );
@@ -88,7 +102,7 @@ app.put("/personagens/:id", function (req, res) {
         return;
     }
 
-    lista[id] = item;
+    itemEncontrado = { ...novoItem };
 
     res.send("Personagem atualizada com sucesso!");
 });
@@ -96,15 +110,19 @@ app.put("/personagens/:id", function (req, res) {
 // [DELETE] /personagens/:id
 // Delete
 app.delete("/personagens/:id", function (req, res) {
-    const id = req.params.id - 1;
+    const id = +req.params.id;
 
-    if (!lista[id]) {
+    const itemEncontrado = findById(id);
+
+    if (!itemEncontrado) {
         res.status(404).send("Personagem não encontrado.");
 
         return;
     }
 
-    delete lista[id];
+    const index = lista.indexOf(itemEncontrado);
+
+    lista.splice(index, 1);
 
     res.send("Personagem removida com sucesso!");
 });
