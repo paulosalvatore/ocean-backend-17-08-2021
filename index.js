@@ -19,4 +19,12 @@ app.get("/personagens", function (req, res) {
     res.send(lista);
 });
 
+// [GET] /personagens/:id
+app.get("/personagens/:id", function (req, res) {
+    const id = req.params.id - 1;
+
+    const item = lista[id];
+
+    res.send(item);
+});
 app.listen(3000);
