@@ -20,7 +20,7 @@ const lista = ["Rick Sanchez", "Morty Smith"];
 // [GET] /personagens
 // Read All
 app.get("/personagens", function (req, res) {
-    res.send(lista);
+    res.send(lista.filter(Boolean));
 });
 
 // [GET] /personagens/:id
