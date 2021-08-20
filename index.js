@@ -102,7 +102,7 @@ app.put("/personagens/:id", function (req, res) {
         return;
     }
 
-    itemEncontrado = { ...novoItem };
+    itemEncontrado.nome = novoItem.nome;
 
     res.send("Personagem atualizada com sucesso!");
 });
