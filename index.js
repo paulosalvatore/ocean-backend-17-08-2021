@@ -1,6 +1,10 @@
 const express = require("express");
 const app = express();
 
+// Sinalizamos para o Express que todo body da requisição
+// estará estruturado em JSON
+app.use(express.json());
+
 app.get("/", function (req, res) {
     res.send("Hello World");
 });
@@ -27,4 +31,10 @@ app.get("/personagens/:id", function (req, res) {
 
     res.send(item);
 });
+
+// [POST] /personagens
+app.post("/personagens", function (req, res) {
+    res.send(req.body);
+});
+
 app.listen(3000);
