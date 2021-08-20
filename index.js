@@ -102,7 +102,11 @@ app.put("/personagens/:id", function (req, res) {
         return;
     }
 
-    itemEncontrado.nome = novoItem.nome;
+    const index = lista.indexOf(itemEncontrado);
+
+    novoItem.id = id;
+
+    lista[index] = novoItem;
 
     res.send("Personagem atualizada com sucesso!");
 });
