@@ -24,6 +24,7 @@ app.get("/personagens", function (req, res) {
 });
 
 // [GET] /personagens/:id
+// Read By Id
 app.get("/personagens/:id", function (req, res) {
     const id = req.params.id - 1;
 
@@ -33,6 +34,7 @@ app.get("/personagens/:id", function (req, res) {
 });
 
 // [POST] /personagens
+// Create
 app.post("/personagens", function (req, res) {
     // Obtém o corpo da requisição e coloca na variável item
     const item = req.body.nome;
